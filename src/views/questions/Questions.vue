@@ -32,7 +32,8 @@
               </el-radio-group>
               <!-- 选择题,四个选项 -->
               <div v-for="i in 4" class="flex w-full mb-1" >
-                <div class="w-16 ml-1">{{ `选项：`+i }}</div>
+                <POptions />
+
                 <el-input  v-model="textarea2" :autosize="autosize" type="textarea"
                   placeholder="Please input" />
               </div>
@@ -58,6 +59,9 @@
 import "@wangeditor/editor/dist/css/style.css"; // 引入 css
 import { Editor, Toolbar } from "@wangeditor/editor-for-vue";
 import { onBeforeUnmount, ref, shallowRef, onMounted } from "vue";
+// components 
+import POptions from "@/components/POptions/POptions.vue";
+
 
 const drawerVisible = ref(false);
 
