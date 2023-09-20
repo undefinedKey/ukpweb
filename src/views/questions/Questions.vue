@@ -2,8 +2,15 @@
   <div>
     <el-button @click="addQuestions">添加题目</el-button>
 
-    <el-drawer title="我是标题" v-model="drawerVisible" direction="rtl" size="50%" :destroy-on-close="true" :show-close="true"
-      :wrapperClosable="false">
+    <el-drawer
+      title="我是标题"
+      v-model="drawerVisible"
+      direction="rtl"
+      size="50%"
+      :destroy-on-close="true"
+      :show-close="true"
+      :wrapperClosable="false"
+    >
       <div>
         <el-form :model="questions" ref="ruleFormRef">
           <el-form-item label="标题" prop="title">
@@ -13,14 +20,23 @@
           <el-form-item label="内容" prop="content">
             <div>
               <div style="border: 1px solid #ccc">
-                <Toolbar style="border-bottom: 1px solid #ccc" :editor="editorRef" :defaultConfig="toolbarConfig"
-                  :mode="mode" />
-                <Editor style="height: 400px; overflow-y: hidden" v-model="valueHtml" :defaultConfig="editorConfig"
-                  :mode="mode" @onCreated="handleCreated" @onChange="handleChange" />
+                <Toolbar
+                  style="border-bottom: 1px solid #ccc"
+                  :editor="editorRef"
+                  :defaultConfig="toolbarConfig"
+                  :mode="mode"
+                />
+                <Editor
+                  style="height: 400px; overflow-y: hidden"
+                  v-model="valueHtml"
+                  :defaultConfig="editorConfig"
+                  :mode="mode"
+                  @onCreated="handleCreated"
+                  @onChange="handleChange"
+                />
               </div>
             </div>
           </el-form-item>
-
 
           <!-- 选项 -->
           <el-form-item label="选项" prop="options">
@@ -31,16 +47,21 @@
                 <el-radio :label="3" size="large">大题</el-radio>
               </el-radio-group>
               <!-- 选择题,四个选项 -->
-              <div v-for="i in 4" class="flex w-full mb-1" >
-                <div class="w-16 ml-1">{{ `选项：`+i }}</div>
-                <el-input  v-model="textarea2" :autosize="autosize" type="textarea"
-                  placeholder="Please input" />
+              <div v-for="i in 4" class="flex w-full mb-1 items-center">
+                <POptions />
+                <el-input
+                  v-model="textarea2"
+                  :autosize="autosize"
+                  type="textarea"
+                  placeholder="Please input"
+                />
               </div>
 
-
-
               <div class="addOption">
-                <el-icon :size="30" style="border: 1px solid #000;cursor: pointer;">
+                <el-icon
+                  :size="30"
+                  style="border: 1px solid #000; cursor: pointer"
+                >
                   <Plus />
                 </el-icon>
               </div>
@@ -58,7 +79,7 @@
 import "@wangeditor/editor/dist/css/style.css"; // 引入 css
 import { Editor, Toolbar } from "@wangeditor/editor-for-vue";
 import { onBeforeUnmount, ref, shallowRef, onMounted } from "vue";
-
+import POptions from "@/components/POptions/POptions.vue";
 const drawerVisible = ref(false);
 
 // 编辑器实例，必须用 shallowRef
@@ -74,9 +95,9 @@ const editorConfig = {
   },
 };
 
-const optionsType = ref(1)
+const optionsType = ref(1);
 
-const autosize = { minRows: 2, maxRows: 4 }
+const autosize = { minRows: 2, maxRows: 4 };
 
 // 内容 HTML
 const valueHtml = ref("");
