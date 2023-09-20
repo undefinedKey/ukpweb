@@ -80,6 +80,7 @@ import "@wangeditor/editor/dist/css/style.css"; // 引入 css
 import { Editor, Toolbar } from "@wangeditor/editor-for-vue";
 import { onBeforeUnmount, ref, shallowRef, onMounted } from "vue";
 import POptions from "@/components/POptions/POptions.vue";
+
 const drawerVisible = ref(false);
 
 // 编辑器实例，必须用 shallowRef
